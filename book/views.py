@@ -12,9 +12,9 @@ def book(request):
 def search(request):
     query = request.GET.get('q')
     if query:
-        results = Book.objects.filter(title__icontains=query)
+        results = Book.objects.filter(title__icontains=query) | Book.objects.filter(author__first_name__icontains=query)
     else:
-        results = None
+        results = Book.objects.all()  # If the query is empty, return all books
     
     return render(request, 'search_results.html', {'results': results, 'query': query})
 
