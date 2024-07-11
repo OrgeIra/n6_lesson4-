@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import Book, Author
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     return render(request, 'home.html')
 
+@login_required()
 def book(request):
     if request.method == 'POST':
         search = request.POST.get('search')
