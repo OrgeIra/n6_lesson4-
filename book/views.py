@@ -21,9 +21,9 @@ def search(request):
     if query:
         results = Book.objects.filter(title__icontains=query) | Book.objects.filter(author__first_name__icontains=query)
     else:
-        results = Book.objects.all()  # If the query is empty, return all books
+        results = Book.objects.all()  
     return render(request, 'search_results.html', {'results': results, 'query': query})
 
 def author(request):
-    authors = Author.objects.all()  # Retrieve all authors from the database
+    authors = Author.objects.all() 
     return render(request, 'author.html', {'authors': authors})
